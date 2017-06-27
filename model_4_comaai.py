@@ -38,7 +38,7 @@ def read_data_from_csv_file(csv_file):
         degrees = 35
         correction = degrees *0.01
         for row in reader:
-            # print(row['center'], row['steering'])
+            print(row['center'], row['steering'])
             steering_value = float(row['steering'])
             if (steering_value > 0.35 or steering_value < -0.35):
                 images.append(row['center'])
@@ -229,4 +229,4 @@ if __name__ == '__main__':
 	history = train_model(epochs, batch_size, samples_per_epoch, nb_val_samples)
 	evaluate_model()
 	# save arquitecture as model.json
-	with open('./model.json', 'w') as outfile: json.dump(model.to_json(), outfile)
+	with open('./model.json', 'w') as outfile:json.dump(model.to_json(), outfile)
