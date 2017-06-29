@@ -1,4 +1,4 @@
-##Writeup Template
+##Writeup
 ---
 
 **Advanced Lane Finding Project**
@@ -36,6 +36,7 @@ The goals / steps of this project are the following:
 ###Writeup / README
 
 ###Methodology
+
 ###Camera Calibration
 
 The code for this step is contained in the code cell 4 of the IPython notebook located in "Advanced-Lane-Lines.ipynb".  
@@ -53,7 +54,9 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 Given these corners, the distortion matrix and distances are calculated using opencv and used to undistort images taken from this camera. The function `get_undistord()` in the cell 3 of the notebook applies the undistortion.
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 ![alt text][image2]
+
 After undistortion
+
 ![alt text][undistordistors]
 
 ####2. Combine Color and gradient thresholds for lane detection
@@ -93,7 +96,9 @@ here you can see the binary-masked image:
 ####5. Identifying lane-line pixels and fit their positions with a polynomial
 
 To identify the lane-line I applied the sliding windows technique (the code can found in the cell 19 of the notebook) and I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+
 ![alt text][image5]
+
 ![alt text][slidingWindow]
 
 ![alt text][slidingWindow2]
@@ -105,7 +110,7 @@ To identify the lane-line I applied the sliding windows technique (the code can 
 
 I did this in cell 15 in the notebook 
 
-####7. Example image of your result plotted back down onto the road such that the lane area is identified clearly.
+####7. Example image of my result plotted back down onto the road such that the lane area is identified clearly.
 
 I implemented this step in the cell 21 in the function `pipeline()`.  Here is an example of my result on a test image:
 
@@ -115,9 +120,9 @@ I implemented this step in the cell 21 in the function `pipeline()`.  Here is an
 
 ###Pipeline (video)
 
-####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
+####1. Provide a link to my final video output.  
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](https://youtu.be/BSKNAGcw6Sw)
 
 ---
 
