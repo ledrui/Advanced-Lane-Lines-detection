@@ -24,7 +24,7 @@ The goals / steps of this project are the following:
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
 [image6]: ./examples/lanesDrawn.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
-[undistordistors]: ./output_images/undistorted_test_img "Undistorted_example"
+[undistordistors]: ./output_images/undistorted_test_img.jpg "Undistorted_example"
 [treshold]: ./output_images/threshold.jpg "Fit Visual"
 [mask]: ./output_images/4mask.jpg "Mask"
 [slidingWindow]:./output_images/sliding_indow.jpg "sliding windows"
@@ -49,11 +49,13 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 ###Pipeline (single images)
 
 ####1. Example of a distortion-corrected image.
+
 Given these corners, the distortion matrix and distances are calculated using opencv and used to undistort images taken from this camera. The function `get_undistord()` in the cell 3 of the notebook applies the undistortion.
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 ![alt text][image2]
 After undistortion
 ![alt text][undistordistors]
+
 ####2. Combine Color and gradient thresholds for lane detection
 I created a combined binary image using color and gradient thresholding 
 I used a combination of color and gradient thresholds to generate a binary image in cell 6.  Here's an example of my output for this step.
