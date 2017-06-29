@@ -1,3 +1,4 @@
 data/
 .DStore
-__pycashe__/
+__pycache__/
+IMG/

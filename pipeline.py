@@ -3,6 +3,7 @@ import cv2
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 import glob
+import calibration
 # %matplotlib inline
 
 # Apply a threshold on the sobel magnitude
@@ -97,7 +98,7 @@ def sliding_window_poly(final_mask, left_peak, right_peak, num_chunks=10, leeway
     # Split the image vertically into chunks, for analysis.
     chunks = []
     assert final_mask.shape[0] % num_chunks == 0, 'Number of chunks must be a factor of vertical resolution!'
-    px = final_mask.shape[0] / num_chunks # Pixels per chunk
+    px = final_mask.shape[0] // num_chunks # Pixels per chunk
     for i in range(num_chunks):
         chunk = final_mask[i*px:(i+1)*px, :]
         chunks.append(chunk)
@@ -282,10 +283,60 @@ dst = np.array([[320, 0], [320, 720], [960, 720], [960, 0]]).astype(np.float32)
 # Create transformer object, this means that the transformer matrix only needs to be computed once
 transform = PerspectiveTransformer(src, dst)
 
-from moviepy.editor import VideoFileClip
+# TEST
+# Read In Data Project test images
+image_hard_1 = mpimg.imread("./examples/test1.jpg")
+image_1 = mpimg.imread("./test_images/test1.jpg")
+image_2 = mpimg.imread("./test_images/test2.jpg")
+image_3 = mpimg.imread("./test_images/test3.jpg")
+image_4 = mpimg.imread("./test_images/test4.jpg")
+image_5 = mpimg.imread("./test_images/test5.jpg")
+image_6 = mpimg.imread("./test_images/test6.jpg")
 
-white_output = 'out11.mp4'
-clip1 = VideoFileClip("challenge_video.mp4")
-white_clip = clip1.fl_image(process_frame) #NOTE: this function expects color images!!
+img_proc1 = process_frame(image_1)
+img_proc2 = process_frame(image_2)
+img_proc3 = process_frame(image_3)
+img_proc4 = process_frame(image_4)
+img_proc5 = process_frame(image_5)
+img_proc6 = process_frame(image_6)
+# Single Image View
+plt.figure(figsize=(460,440))
+plt.imshow(process_frame(image_hard_1), cmap="gray")
 
-white_clip.write_videofile(white_output, audio=False)
+f, ((ax1, ax2), (ax3, ax4),(ax5, ax6), (ax7, ax8),(ax9, ax10), (ax11, ax12)) = plt.subplots(6, 2, figsize=(12, 18))
+ax1.imshow(image_1)
+ax1.set_title('Original Image 1', fontsize=20)
+ax2.imshow(img_proc1)
+ax2.set_title('Augmented 1', fontsize=20)
+ax3.imshow(image_2)
+ax3.set_title('Original Image 2', fontsize=20)
+ax4.imshow(img_proc2)
+ax4.set_title('Augmented 2', fontsize=20)
+ax5.imshow(image_3)
+ax5.set_title('Original Image 3', fontsize=20)
+ax6.imshow(img_proc3)
+ax6.set_title('Augmented 3', fontsize=20)
+ax7.imshow(image_4)
+ax7.set_title('Original Image 4', fontsize=20)
+ax8.imshow(img_proc4)
+ax8.set_title('Augmented 4', fontsize=20)
+ax9.imshow(image_5)
+ax9.set_title('Original Image 5', fontsize=20)
+ax10.imshow(img_proc5)
+ax10.set_title('Augmented 5', fontsize=20)
+ax11.imshow(image_6)
+ax11.set_title('Original Image 6', fontsize=20)
+ax12.imshow(img_proc6)
+ax12.set_title('Augmented 6', fontsize=20)
+
+plt.subplots_adjust(hspace=0.6)
+
+plt.show()
+# apply to clip video
+# from moviepy.editor import VideoFileClip
+#
+# white_output = 'challenge_out11.mp4'
+# clip1 = VideoFileClip("challenge_video.mp4")
+# white_clip = clip1.fl_image(process_frame) #NOTE: this function expects color images!!
+#
+# white_clip.write_videofile(white_output, audio=False)
