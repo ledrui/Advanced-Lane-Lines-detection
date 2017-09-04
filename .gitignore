@@ -1,4 +1,7 @@
+.ipynb_checkpoints/
 data/
 .DStore
 __pycache__/
 IMG/
+process-img.py
+clipper.py 

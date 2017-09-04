@@ -51,8 +51,7 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 
 ####1. Example of a distortion-corrected image.
 
-Given these corners, the distortion matrix and distances are calculated using opencv and used to undistort images taken from this camera. The function `get_undistord()` in the cell 3 of the notebook applies the undistortion.
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
+Given these corners, the distortion matrix and distances are calculated using opencv and used to undistort images taken from this camera. To demonstrate this step, Here how I apply the distortion correction to one of the test images like this one:
 ![alt text][image2]
 
 After undistortion
@@ -61,41 +60,39 @@ After undistortion
 
 ####2. Combine Color and gradient thresholds for lane detection
 I created a combined binary image using color and gradient thresholding 
-I used a combination of color and gradient thresholds to generate a binary image in cell 6.  Here's an example of my output for this step.
+I used a combination of color and gradient thresholds to generate a binary image, the code can be found in the file `cameraCalibration.py`.  Here's an example of my output for this step.
 
 ![alt text][treshold]
 
 ####3. Perspective transform
 
-The code for my perspective transform includes a function called `warp()`, which appears in the 10th code cell of the IPython notebook).  The `warp()` function takes as inputs an image (`img`).  I chose the hardcode the source and destination points in the following manner:
+The code for my perspective transform can be seen in cell 2 of the notebook.  I chose the hardcode the source and destination points in the following manner:
 ```
-src = np.float32(
-    [[681, 444],
-     [1200, imshape[0]],
-     [598, 444],
-     [200, imshape[0]]])
-
-dst = np.float32(
-    [[975, (imshape[0] - imshape[0])],
-     [975, imshape[0]],
-     [300, (imshape[0] - imshape[0])],
-     [300, imshape[0]]])
+src = np.float32([
+    [  588,   446 ],
+    [  691,   446 ],
+    [ 1126,   673 ],
+    [  153 ,   673 ]])
+dst = np.float32([[offset, 0], 
+[img_size[0] - offset, 0], 
+[img_size[0] - offset, 
+img_size[1]], 
+[offset, img_size[1]]])
 ```
-The code can be seen in cell 9 of the notebook
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
 ![alt text][image4]
 
 ####4  I applied a polygonal Mask after the binary image
-the code for applying the mask can be found in cell 12
+the code for applying the mask can be found in the file `lane_pipeline.py` 
 here you can see the binary-masked image:
 
 ![alt text][mask]
 
 ####5. Identifying lane-line pixels and fit their positions with a polynomial
 
-To identify the lane-line I applied the sliding windows technique (the code can found in the cell 19 of the notebook) and I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+To identify the lane-line I applied the sliding windows technique (the code can found in the line 58 of the file `lane_pipeline.py` ) and I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
 
 ![alt text][image5]
 
@@ -108,13 +105,13 @@ To identify the lane-line I applied the sliding windows technique (the code can 
 
 ####6. Curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in cell 15 in the notebook 
+I did this in line 141 in the file `lane_pipeline.py`  
 
 ####7. Example image of my result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in the cell 21 in the function `pipeline()`.  Here is an example of my result on a test image:
+I implemented this step in the line 135 in the file `lane_pipeline.py` file.  Here is an example of my result on a test image:
 
-![alt text][image6]
+![alt text][image6] 
 
 ---
 
@@ -122,7 +119,7 @@ I implemented this step in the cell 21 in the function `pipeline()`.  Here is an
 
 ####1. Provide a link to my final video output.  
 
-Here's a [link to my video result](https://youtu.be/BSKNAGcw6Sw)
+Here's a [link to my video result](https://youtu.be/S3lEWhcSMOQ)
 
 ---
 
